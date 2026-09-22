@@ -1,0 +1,64 @@
+# Private files and secrets
+.env
+.env.*
+*.pem
+*.key
+*credentials*
+*secrets*
+private/
+clients/
+confidential/
+paid/
+proprietary/
+local/
+work/
+# Weights
+models/
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.gguf
+*.onnx
+*.h5
+*.pkl
+*.pickle
+# Media can embed private workflow data
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.tif
+*.tiff
+*.bmp
+*.heic
+*.avif
+*.svg
+*.mp4
+*.mov
+*.pdf
+*.zip
+*.7z
+# Review workflow exports before intentional addition
+*.json
+*.jsonl
+# Runtime
+.venv/
+venv/
+__pycache__/
+*.pyc
+node_modules/
+input/
+output/
+temp/
+logs/
+*.log
+.DS_Store
+Thumbs.db
+# Documentation-only example folders
+!examples/input/
+!examples/input/README.md
+!examples/output/
+!examples/output/README.md
