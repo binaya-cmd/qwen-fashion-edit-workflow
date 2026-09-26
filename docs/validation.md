@@ -2,6 +2,8 @@
 
 On 2026-09-26, one local run completed successfully and saved a 768 × 768 output. The beige dress became green. This establishes execution for these inputs, not production readiness or a general hardware benchmark.
 
+A separate [fictional-adult party-dress test](human-validation.md) is also available. Measurements below refer only to this mannequin run.
+
 ## What ran
 
 - Public graph: `workflows/low-budget/Qwen_Fashion_Edit_3060.json`, introduced in commit `dc911d9627f8017844b9b0f6d9dd206bb9e34569`; 19 nodes, 27 typed connections checked.

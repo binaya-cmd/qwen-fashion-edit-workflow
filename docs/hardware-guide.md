@@ -2,7 +2,7 @@
 
 ## Understand the setup paths
 
-The table describes options to evaluate, not measured performance or purchasing recommendations. Only the experimental budget JSON is supplied. One cold synthetic mannequin run on RTX 3060 12 GB is documented in [validation](validation.md); no repeated or comparative benchmark is available.
+The table describes options to evaluate, not measured performance or purchasing recommendations. Only the experimental budget JSON is supplied. One cold synthetic mannequin run on RTX 3060 12 GB is documented in [validation](validation.md); a separate [fictional-adult party-dress run](human-validation.md) is also documented. No repeated or comparative benchmark is available.
 
 | Path | What it means here | Why evaluate it | Main tradeoff | Evidence today |
 | --- | --- | --- | --- | --- |
