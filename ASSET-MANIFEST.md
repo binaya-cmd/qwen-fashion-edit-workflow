@@ -38,3 +38,10 @@ Exact subtitle: "A visual guide to reference-led clothing edits".
 Above left image: "BEFORE". Above right image: "AFTER CONCEPT".
 Legible footer: "AI-generated illustration • Not a tested Qwen workflow output".
 Critical: depict a fictional person created from scratch, no real person likeness, no client images, no logos or invented metrics. This is a conceptual illustration, not performance evidence. Make typography elegant, clear and accurately spelled.
+
+
+## Fictional-adult party-dress example
+
+`examples/human-source.png` and `examples/human-reference.png` were created from scratch with the built-in OpenAI image-generation tool on 2026-09-26. No input photographs or real-person references were supplied. The pictured adult is fictional. Images were resized to 768 × 768 for testing; a hand-defined polygon supplies `human-mask.png` and the inverse-alpha `human-source-masked.png`.
+
+`examples/human-result.png` is the unretouched output of the actual local Qwen run, not an image-generation-tool mockup. No client inputs/outputs were involved, and ComfyUI metadata embedding was disabled. The owner explicitly requested running and publishing this example to GitHub. Full generation prompts and the exact Qwen instruction are linked in [HUMAN-PARTY.md](examples/HUMAN-PARTY.md); [measured results](docs/human-validation.md) describe limitations.

@@ -21,13 +21,15 @@
 | :---: | :---: | :---: | :---: |
 | Source photo + garment reference | Paint a focused clothing mask | Run the Qwen graph in ComfyUI | Inspect garment details and edges |
 
-## 🧪 Actual Qwen workflow example
+## 🧪 Simple dress → party dress: actual Qwen example
 
-| Synthetic input | Garment reference | Actual Qwen output |
+| Before: fictional adult | Party-dress reference | After: actual Qwen output |
 | :---: | :---: | :---: |
-| ![Synthetic beige dress on mannequin](examples/source.png) | ![Synthetic green dress reference](examples/reference.png) | ![Actual Qwen output: green dress on mannequin](examples/result.png) |
+| ![Fictional adult in a plain beige dress](examples/human-source.png) | ![Midnight-blue satin party dress with silver embroidery](examples/human-reference.png) | ![Actual Qwen edit of the fictional adult in a party dress](examples/human-result.png) |
 
-**One local run · RTX 3060 12 GB · 20 steps · about 11m 40s including model loading.** The output was not retouched. All zero-mask pixels matched the source exactly. Small beige remnants and soft/clipped garment edges remain; fine fabric details differ from the reference. This is a pipeline demonstration, not proof of product-perfect transfer. [Inputs, mask and test prompt](examples/README.md) · [Environment, measurements and limitations](docs/validation.md).
+**Actual local Qwen run · RTX 3060 12 GB · 20 steps · 10m 41s including model loading.** The adult and reference were generated from scratch; no client photographs were used. The after image is the unretouched workflow output. All zero-mask pixels were preserved exactly. The bodice embroidery is largely missing, the hem pattern is simplified, and thin beige edge remnants remain. This is an experimental demonstration, not an exact product replica.
+
+[**Inputs, mask and prompt**](examples/HUMAN-PARTY.md) · [**Measured human-example report**](docs/human-validation.md) · [Earlier mannequin test](examples/README.md)
 
 ## ✨ See the concept
 
@@ -45,7 +47,7 @@ A local Qwen workflow for experimenting with everyday garment edits using a sour
 
 For a detailed explanation, start with the **[public project overview](docs/project-overview.md)**. It covers the complete process, examples, limitations, privacy, and common questions. For equipment choices and operating costs, read the **[hardware and cost guide](docs/hardware-guide.md)**.
 
-**Status: experimental workflow starter.** The low-budget JSON is now included and structurally checked. One synthetic mannequin run completed on an RTX 3060 12 GB. The result demonstrates pipeline execution and a garment-color change, with visible edge limitations. It is not a general quality or speed benchmark. [Measured report](docs/validation.md). This project is independent of Qwen and ComfyUI.
+**Status: experimental workflow starter.** The low-budget JSON is now included and structurally checked. Two separate synthetic examples completed on an RTX 3060 12 GB: a mannequin color edit and a fictional adult changing from a plain dress to a party dress. These demonstrate pipeline execution, with documented visual limitations. It is not a general quality or speed benchmark. [Measured report](docs/validation.md). This project is independent of Qwen and ComfyUI.
 
 ## ✓ What you need before starting
 
@@ -170,21 +172,21 @@ The graph edits a painted garment region and composites it over the original sou
 
 | Setup | Intended use | Status |
 | --- | --- | --- |
-| RTX 3060 12 GB | GGUF Q4_K_M, reduced working resolution and offloading | One synthetic mannequin run completed; approximately 11m 40s including model loading; see validation |
+| RTX 3060 12 GB | GGUF Q4_K_M, reduced working resolution and offloading | Mannequin and fictional-adult examples completed; measured reports linked above |
 | RTX A6000 / A40 48 GB | More memory headroom locally or on rented hardware | Comparison not benchmarked; cloud processing is remote |
 | Larger-memory configurations | Evaluate after a measured need | Research only |
 
 ## ♧ Privacy and public scope
 
-General fashion and e-commerce examples only. The public baseline uses generic prompts and placeholder input filenames. Client images, model weights, credentials, confidential prompts and proprietary paid workflows remain outside the repository and its history. The front-page illustration was created separately to explain the concept; a separate synthetic mannequin input/reference/output demo is now included with measured test notes. Model downloads and installation are manual.
+General fashion and e-commerce examples only. The public baseline uses generic prompts and placeholder input filenames. Client images, model weights, credentials, confidential prompts and proprietary paid workflows remain outside the repository and its history. The front-page illustration was created separately to explain the concept; separate synthetic mannequin and fictional-adult input/reference/output demos are included with measured test notes. Model downloads and installation are manual.
 
 The [pro folder](workflows/pro-placeholder/README.md) remains a documentation placeholder. External models and software retain their own licenses; original repository material is provided under the [MIT License](LICENSE).
 
 ## ◷ What is verified—and what comes next?
 
 - [x] Add a public baseline graph and check its links and public-facing content.
-- [x] Complete one generation run with original synthetic mannequin assets.
-- [x] Record software commits, model hashes, sampled memory and one cold execution time.
+- [x] Complete mannequin and fictional-adult runs using original synthetic assets.
+- [x] Record software commits, model hashes, sampled memory and both execution times.
 - [x] Publish the unretouched test output, inputs and asset manifest.
 - [ ] Measure repeated warm runs and test more garment shapes, poses and mask boundaries.
 - [ ] Compare a high-memory setup using the same inputs and settings.
