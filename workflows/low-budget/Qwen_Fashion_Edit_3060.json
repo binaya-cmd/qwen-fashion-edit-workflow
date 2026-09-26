@@ -1,11 +1,11 @@
 {
-  "last_node_id": 19,
-  "last_link_id": 27,
+  "last_node_id": 21,
+  "last_link_id": 29,
   "nodes": [
     {
       "id": 1,
       "type": "LoadImage",
-      "title": "1. SOURCE PHOTO - right-click to open MaskEditor",
+      "title": "1. SOURCE + GENERATION MASK - use MaskEditor",
       "pos": [
         0,
         0
@@ -32,8 +32,7 @@
           "name": "MASK",
           "type": "MASK",
           "links": [
-            17,
-            26
+            17
           ],
           "slot_index": 1
         }
@@ -90,7 +89,7 @@
     {
       "id": 3,
       "type": "ImageScaleToTotalPixels",
-      "title": "Working resolution — start at 0.5 MP",
+      "title": "Working resolution - 1 MP",
       "pos": [
         390,
         0
@@ -100,7 +99,7 @@
         200
       ],
       "flags": {},
-      "order": 2,
+      "order": 8,
       "mode": 0,
       "inputs": [
         {
@@ -126,14 +125,14 @@
       },
       "widgets_values": [
         "lanczos",
-        0.5,
+        1.0,
         32
       ]
     },
     {
       "id": 4,
       "type": "UnetLoaderGGUF",
-      "title": "Qwen Image Edit 2511 — Q4_K_M",
+      "title": "Qwen Image Edit 2511 - Q4_K_M",
       "pos": [
         0,
         850
@@ -143,7 +142,7 @@
         200
       ],
       "flags": {},
-      "order": 3,
+      "order": 2,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -176,7 +175,7 @@
         200
       ],
       "flags": {},
-      "order": 4,
+      "order": 3,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -212,7 +211,7 @@
         200
       ],
       "flags": {},
-      "order": 5,
+      "order": 4,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -248,7 +247,7 @@
         200
       ],
       "flags": {},
-      "order": 6,
+      "order": 9,
       "mode": 0,
       "inputs": [
         {
@@ -287,7 +286,7 @@
         200
       ],
       "flags": {},
-      "order": 7,
+      "order": 10,
       "mode": 0,
       "inputs": [
         {
@@ -317,7 +316,7 @@
     {
       "id": 9,
       "type": "TextEncodeQwenImageEditPlus",
-      "title": "3. CLOTHING EDIT INSTRUCTION",
+      "title": "CLOTHING EDIT INSTRUCTION",
       "pos": [
         780,
         0
@@ -327,7 +326,7 @@
         280
       ],
       "flags": {},
-      "order": 8,
+      "order": 11,
       "mode": 0,
       "inputs": [
         {
@@ -353,7 +352,7 @@
         {
           "name": "image3",
           "type": "IMAGE",
-          "link": null
+          "link": 28
         }
       ],
       "outputs": [
@@ -370,7 +369,7 @@
         "Node name for S&R": "TextEncodeQwenImageEditPlus"
       },
       "widgets_values": [
-        "Replace only the masked clothing in picture 1 with the everyday garment shown in picture 2. Match the garment color, fabric, pattern, sleeves, seams and silhouette. Preserve the person, face, hair, pose, hands, lighting and background. Realistic fashion catalog photograph."
+        "Edit the clothing in picture 1 to match the target garment in picture 2. Picture 3 is a detail view of the SAME target garment. Follow the target reference dress length, neckline, sleeves, cut, waistband, fabric, color and embroidery; do not retain the old garment length. Preserve the person, face, pose, hands, lighting and background. Keep natural occlusion around hands and continuous clean garment edges. Match reference details as closely as possible."
       ]
     },
     {
@@ -386,7 +385,7 @@
         200
       ],
       "flags": {},
-      "order": 9,
+      "order": 12,
       "mode": 0,
       "inputs": [
         {
@@ -412,7 +411,7 @@
         {
           "name": "image3",
           "type": "IMAGE",
-          "link": null
+          "link": 29
         }
       ],
       "outputs": [
@@ -445,7 +444,7 @@
         200
       ],
       "flags": {},
-      "order": 10,
+      "order": 14,
       "mode": 0,
       "inputs": [
         {
@@ -484,7 +483,7 @@
         200
       ],
       "flags": {},
-      "order": 11,
+      "order": 15,
       "mode": 0,
       "inputs": [
         {
@@ -523,7 +522,7 @@
         200
       ],
       "flags": {},
-      "order": 12,
+      "order": 13,
       "mode": 0,
       "inputs": [
         {
@@ -565,7 +564,7 @@
         200
       ],
       "flags": {},
-      "order": 13,
+      "order": 16,
       "mode": 0,
       "inputs": [
         {
@@ -597,7 +596,7 @@
     {
       "id": 15,
       "type": "KSampler",
-      "title": "4. GENERATE — 20 steps, batch 1",
+      "title": "GENERATE - 40 steps, batch 1",
       "pos": [
         1550,
         0
@@ -607,7 +606,7 @@
         330
       ],
       "flags": {},
-      "order": 14,
+      "order": 17,
       "mode": 0,
       "inputs": [
         {
@@ -647,7 +646,7 @@
       "widgets_values": [
         20260915,
         "fixed",
-        20,
+        40,
         4.0,
         "euler",
         "simple",
@@ -667,7 +666,7 @@
         200
       ],
       "flags": {},
-      "order": 15,
+      "order": 18,
       "mode": 0,
       "inputs": [
         {
@@ -714,7 +713,7 @@
         200
       ],
       "flags": {},
-      "order": 16,
+      "order": 19,
       "mode": 0,
       "inputs": [
         {
@@ -755,7 +754,7 @@
     {
       "id": 18,
       "type": "SaveImage",
-      "title": "5. SAVE ORIGINAL-SIZE RESULT",
+      "title": "SAVE AT SUPPLIED SOURCE SIZE",
       "pos": [
         2740,
         0
@@ -765,7 +764,7 @@
         200
       ],
       "flags": {},
-      "order": 17,
+      "order": 20,
       "mode": 0,
       "inputs": [
         {
@@ -791,17 +790,98 @@
         1400
       ],
       "size": [
-        740,
-        280
+        750,
+        330
       ],
       "flags": {},
-      "order": 18,
+      "order": 5,
       "mode": 0,
       "inputs": [],
       "outputs": [],
       "properties": {},
       "widgets_values": [
-        "Experimental public baseline. Upload a source photo you have permission to edit and an everyday garment reference. Paint the clothing region in MaskEditor; keep the face, hair and background outside the mask. Save the mask. An empty mask returns the original photo. Start at 0.5 MP and one image. Zero-mask pixels are copied from the source; soft mask edges blend. Check garment details and boundaries. No LoRA is required. Full generation quality, speed and memory have not been benchmarked for this public graph."
+        "1 MP / 40 steps. Load all four image nodes. Node 1: source with generation mask. Node 2: full target garment. Node 20: detail crop of SAME reference (or repeat full reference). Node 21: SAME source/crop and dimensions, with a separate blend mask. Use MaskEditor: plain RGB black/white mask files do not supply LoadImage alpha masks. Cover old and intended new garment silhouette; exclude hands/face where possible. Target reference controls dress length. Prepare tight source crops manually; no automatic crop/stitch or repair pass. Carefully inpaint boundaries and review details. Exact garment reproduction is not guaranteed. README preview is retouched, not raw workflow output."
+      ]
+    },
+    {
+      "id": 20,
+      "type": "LoadImage",
+      "title": "3. TARGET DETAIL - crop of same garment",
+      "pos": [
+        -400,
+        430
+      ],
+      "size": [
+        340,
+        200
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            28,
+            29
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "UPLOAD_REFERENCE_DETAIL.png",
+        "image"
+      ]
+    },
+    {
+      "id": 21,
+      "type": "LoadImage",
+      "title": "4. SAME SOURCE + BLEND MASK - use MaskEditor",
+      "pos": [
+        -400,
+        0
+      ],
+      "size": [
+        340,
+        200
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [],
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            26
+          ],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "UPLOAD_SOURCE_WITH_BLEND_MASK.png",
+        "image"
       ]
     }
   ],
@@ -1008,7 +1088,7 @@
     ],
     [
       26,
-      1,
+      21,
       1,
       17,
       2,
@@ -1020,6 +1100,22 @@
       0,
       18,
       0,
+      "IMAGE"
+    ],
+    [
+      28,
+      20,
+      0,
+      9,
+      4,
+      "IMAGE"
+    ],
+    [
+      29,
+      20,
+      0,
+      10,
+      4,
       "IMAGE"
     ]
   ],
