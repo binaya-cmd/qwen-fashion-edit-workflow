@@ -1,59 +1,39 @@
 # Local AI Fashion & E-commerce Image Editing with ComfyUI
-Low-budget and high-end setup guidance for a local Qwen image-editing workflow.
 
-**Status: documentation starter.** Workflow folders are placeholders, not runnable graphs. No GPU benchmarks or demo results have been produced for this repository. It is independent of Qwen and ComfyUI.
+A local Qwen workflow for experimenting with everyday garment edits using a source photo, product reference and painted clothing mask.
 
-## What this project is for
-Explore garment color changes, background cleanup, and material-edit experiments using images you own or have permission to use. Inspect fabric texture, seams, logos, fit, face consistency, and color before using an output in a product listing. Generative edits can misrepresent the actual product.
+**Status: experimental workflow starter.** The low-budget JSON is now included and structurally checked. End-to-end image generation, visual quality, peak memory and speed are not yet validated for this public graph. This project is independent of Qwen and ComfyUI.
 
 ## Start here
-1. Read the [hardware guide](docs/hardware-guide.md) before downloading large models.
-2. Follow [installation](docs/installation.md).
-3. Use the [official model sources](docs/model-downloads.md).
-4. Start with the [low-budget plan](workflows/low-budget/README.md) and an official upstream template.
-5. Check [troubleshooting](docs/troubleshooting.md) and record your first reproducible run.
+
+1. Read the [hardware guide](docs/hardware-guide.md).
+2. Follow [installation](docs/installation.md) and obtain the exact files in [model downloads](docs/model-downloads.md).
+3. Download [Qwen_Fashion_Edit_3060.json](workflows/low-budget/Qwen_Fashion_Edit_3060.json) using **Download raw file** and drag it into ComfyUI.
+4. Follow the [workflow instructions](workflows/low-budget/README.md) to supply two images and paint a mask.
+5. Review the output and consult [troubleshooting](docs/troubleshooting.md).
+
+## What it does
+
+The graph edits a painted garment region and composites it over the original source. Zero-mask areas retain source pixels; soft edges blend. Outputs keep the original dimensions, but the edited region is generated at a lower working resolution. Inspect fabric, seams, fit, logos, color and face consistency before using an output in a product listing.
 
 ## Setup paths
-| Path | Intended use | Current status |
+
+| Setup | Intended use | Status |
 | --- | --- | --- |
-| RTX 3060 **12 GB**, local | Budget experiments with reduced precision and offloading | Untested; fit and speed not guaranteed |
-| RTX A6000 / A40, **48 GB** | More memory headroom, local workstation or rented GPU | Untested; cloud is remote processing |
-| Larger-memory / heavier-model setup | Evaluate only after a measured quality or capacity need | Research placeholder |
-
-See the hardware guide for cost arithmetic and benchmark requirements. More VRAM alone does not establish image quality or speed.
-
-## Repository layout
-```text
-docs/
-  installation.md
-  hardware-guide.md
-  model-downloads.md
-  troubleshooting.md
-  publishing.md
-workflows/
-  low-budget/README.md
-  pro-placeholder/README.md
-examples/
-  input/README.md
-  output/README.md
-CONTRIBUTING.md
-LICENSE
-.gitignore
-```
+| RTX 3060 12 GB | GGUF Q4_K_M, reduced working resolution and offloading | Experimental graph included; inference and performance untested |
+| RTX A6000 / A40 48 GB | More memory headroom locally or on rented hardware | Comparison not benchmarked; cloud processing is remote |
+| Larger-memory configurations | Evaluate after a measured need | Research only |
 
 ## Public scope
-This repository contains original public documentation and placeholders only. Client images, model weights, confidential prompts, credentials, and proprietary paid workflow details do not belong here. Keep private work outside this repository, including outside its Git history.
 
-No model downloads, API calls, cloud jobs, or paid services are triggered by these files. Images are deliberately absent. Ignore rules reduce accidental additions but do not protect files already tracked or force-added.
+General fashion and e-commerce examples only. The public baseline uses generic prompts and placeholder input filenames. Client images, model weights, credentials, confidential prompts and proprietary paid workflows remain outside the repository and its history. No demo images are included. Model downloads and installation are manual.
 
-## Roadmap
-- [ ] Validate one public low-budget graph on a named GPU.
-- [ ] Record exact ComfyUI commit, model revisions, settings, peak memory, and timings.
-- [ ] Review the graph for private paths, prompts, and embedded data.
-- [ ] Publish only explicitly cleared demo assets and an asset manifest.
+The [pro folder](workflows/pro-placeholder/README.md) remains a documentation placeholder. External models and software retain their own licenses; original repository material is provided under the [MIT License](LICENSE).
+
+## Next validation work
+
+- [x] Add a public baseline graph and check its links and public-facing content.
+- [ ] Complete a generation run with cleared demo assets.
+- [ ] Record exact software/model revisions, peak VRAM/RAM and timings.
+- [ ] Publish reviewed examples with an asset manifest.
 - [ ] Compare a high-memory setup using the same inputs and settings.
-
-## License
-Original repository text is available under the [MIT License](LICENSE). External software, models, LoRAs, and assets retain their own licenses. No model weights or third-party workflow graphs are redistributed.
-
-Official references were checked on 2026-09-22. See [model downloads](docs/model-downloads.md) for the selected reference family; this project does not claim it is the latest or benchmarked best choice.
