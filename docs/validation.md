@@ -5,13 +5,15 @@
 | Check | Status | What it establishes |
 | --- | --- | --- |
 | JSON parsing and graph link consistency | Passed on 2026-09-26: 19 nodes, 27 typed connections | The exported structure is internally consistent |
-| Public content review | Generic prompts and placeholder image names; no images or weights supplied | The published file is a public baseline |
+| Public content review | Generic prompts and placeholder image names; no client images or weights supplied | The published graph is a public baseline |
 | Earlier local setup validation | Baseline model files and graph inputs recognized; two input images absent | Setup recognition, not a generation result |
 | Public graph end-to-end generation | Pending | No inference success claim yet |
 | Visual quality and garment fidelity | Pending | No demonstrated accuracy claim yet |
 | Timings, peak VRAM/RAM and hardware comparison | Pending | No performance numbers yet |
 
-ComfyUI was not listening on local port 8188 during the documentation update on 2026-09-26. No image-generation job was run as part of that update.
+ComfyUI was not listening on local port 8188 during the documentation update on 2026-09-26. No ComfyUI generation job was run as part of that update.
+
+The front-page concept illustration was created separately with an image-generation tool. It is not a ComfyUI/Qwen run and does not change any pending validation status above.
 
 ## Test inputs
 
