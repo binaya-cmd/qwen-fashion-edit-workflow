@@ -1,3 +1,5 @@
+![Qwen Fashion Edit technology banner: source image, paintbrush mask, connected garment model and edited garment](fashion-tech-banner.png)
+
 <div align="center">
 
 # ✦ Qwen Fashion Edit
@@ -5,15 +7,21 @@
 ### Local AI clothing edits · ComfyUI workflow · Reference-guided experiments
 
 ![Status: Experimental](https://img.shields.io/badge/STATUS-EXPERIMENTAL-C8A96B?style=for-the-badge)
-![Workflow: ComfyUI](https://img.shields.io/badge/WORKFLOW-COMFYUI-182C38?style=for-the-badge)
-![Model: Qwen Image Edit 2511](https://img.shields.io/badge/MODEL-QWEN_EDIT_2511-516B65?style=for-the-badge)
-![License: MIT](https://img.shields.io/badge/REPOSITORY_LICENSE-MIT-182C38?style=for-the-badge)
+![Workflow: ComfyUI](https://img.shields.io/badge/WORKFLOW-COMFYUI-06B6D4?style=for-the-badge)
+![Model: Qwen Image Edit 2511](https://img.shields.io/badge/MODEL-QWEN_EDIT_2511-8B5CF6?style=for-the-badge)
+![License: MIT](https://img.shields.io/badge/REPOSITORY_LICENSE-MIT-2563EB?style=for-the-badge)
 
 **Your photo. Your garment reference. A carefully chosen edit area.**
 
 [**Download workflow ↓**](https://github.com/binaya-cmd/qwen-fashion-edit-workflow/raw/refs/heads/main/workflows/low-budget/Qwen_Fashion_Edit_3060.json) · [**Full overview**](docs/project-overview.md) · [**Hardware & costs**](docs/hardware-guide.md) · [**Troubleshooting**](docs/troubleshooting.md)
 
 </div>
+
+| 🖼️ **YOUR IMAGES** | 🎨 **YOUR EDIT AREA** | 🧠 **LOCAL GENERATION** | 👗 **REVIEW THE RESULT** |
+| :---: | :---: | :---: | :---: |
+| Source photo + garment reference | Paint a focused clothing mask | Run the Qwen graph in ComfyUI | Inspect garment details and edges |
+
+## ✨ See the concept
 
 ![Illustrative before-and-after clothing concept: fictional adult wearing a beige dress and a green dress](fashion-edit-concept.png)
 

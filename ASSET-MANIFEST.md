@@ -1,5 +1,11 @@
 # Public visual asset
 
+## fashion-tech-banner.png
+
+Original technology-themed banner generated on 2026-09-26 using the built-in OpenAI image-generation tool, at the repository owner's request for a colorful premium front-page design. No input images or client assets were supplied. Generic image, mask, connected-shirt and garment icons illustrate the process; these are not official Qwen or ComfyUI logos and do not depict measured output.
+
+Generation prompt: Create a premium wide technology banner for QWEN FASHION EDIT, midnight navy background, cyan/violet gradients and gold accents; large bespoke 3D shirt with workflow nodes plus source-image, paintbrush-mask and edited-garment icons. Title QWEN FASHION EDIT; subtitle LOCAL AI • COMFYUI • GARMENT EDITING; label EXPERIMENTAL WORKFLOW. No people, client photos, company logos, benchmark numbers or certification claims.
+
 ## fashion-edit-concept.png
 
 - Created on 2026-09-26 using the built-in OpenAI image-generation tool at the repository owner's request for publication here.
