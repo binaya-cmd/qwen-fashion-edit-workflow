@@ -1,22 +1,19 @@
 # Model downloads
-No weights are included. Download into ComfyUI outside this repository.
 
-The selected reference is Qwen-Image-Edit-2511, not a claim of latest-model status or 12 GB compatibility. Use the exact links in the [official ComfyUI tutorial](https://docs.comfy.org/tutorials/image/qwen/qwen-image-edit-2511).
+No weights are included. Place downloads inside ComfyUI, outside this repository.
 
-| Component | Filename | ComfyUI folder |
-| --- | --- | --- |
-| Diffusion model | qwen_image_edit_2511_bf16.safetensors | models/diffusion_models/ |
-| Text encoder | qwen_2.5_vl_7b_fp8_scaled.safetensors | models/text_encoders/ |
-| VAE | qwen_image_vae.safetensors | models/vae/ |
+## Public low-budget graph
 
-Upstream sources: [Qwen model card](https://huggingface.co/Qwen/Qwen-Image-Edit-2511), [Comfy-Org edit packaging](https://huggingface.co/Comfy-Org/Qwen-Image-Edit_ComfyUI), [shared components](https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI).
+| Component | Exact filename | ComfyUI folder | Source |
+| --- | --- | --- | --- |
+| GGUF diffusion model | `qwen-image-edit-2511-Q4_K_M.gguf` | `models/diffusion_models/` | [Unsloth GGUF packaging](https://huggingface.co/unsloth/Qwen-Image-Edit-2511-GGUF) |
+| Text/image encoder | `qwen_2.5_vl_7b_fp8_scaled.safetensors` | `models/text_encoders/` | [Comfy-Org components](https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/tree/main/split_files/text_encoders) |
+| VAE | `qwen_image_vae.safetensors` | `models/vae/` | [Comfy-Org components](https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/tree/main/split_files/vae) |
 
-The tutorial also links an optional Lightning LoRA. It is separately maintained; review its source/license and use only its matching model and settings. Do not mix 2509 and 2511 components without explicit compatibility guidance.
+The GGUF is third-party quantized packaging, loaded by [city96/ComfyUI-GGUF](https://github.com/city96/ComfyUI-GGUF). Do not rename a GGUF to a safetensors filename. No LoRA is needed by this graph. Source links identify the selected family, not the latest or best model.
 
-## Budget variants
-No quantized variant or custom loader is validated here. Full BF16 is not a promised 12 GB recipe. Reduced precision may require different loaders and custom nodes. Do not rename GGUF files to fit a loader.
+Upstream references: [Qwen model card](https://huggingface.co/Qwen/Qwen-Image-Edit-2511) and [official ComfyUI tutorial](https://docs.comfy.org/tutorials/image/qwen/qwen-image-edit-2511). The tutorial's full BF16 model is an alternative reference requiring a different loader; it is not a drop-in replacement for this GGUF graph or a promised 12 GB recipe.
 
-## Download checks
-Check repository owner, exact filename, size, revision, model card, and license for every component. Record its source URL and revision. Compare SHA-256 against a trusted upstream checksum where available; a locally calculated hash alone does not establish provenance. Refresh or restart ComfyUI after placing files and select the correct filenames.
+Review each source's license, exact filename, size and revision before downloading. Record revision and SHA-256, comparing against a trusted upstream checksum where available. A local hash alone does not establish provenance. Restart or refresh ComfyUI and select the exact model filenames.
 
-References checked on 2026-09-22. External models and software retain their own licenses.
+The original local setup recognized these files; inference memory, quality and speed remain untested for the sanitized public graph. External models and software retain their own licenses.
