@@ -2,7 +2,7 @@
 
 [Download the workflow JSON](Qwen_Fashion_Edit_3060.json) using GitHub's Download raw file button, then drag it into ComfyUI.
 
-This graph uses a source photo, a garment reference and a hand-painted clothing mask. It targets experiments on an RTX 3060 12 GB with offloading. It is an experimental graph, not a benchmarked or production-ready recipe. No demo images are included.
+This graph uses a source photo, a garment reference and a hand-painted clothing mask. It targets experiments on an RTX 3060 12 GB with offloading. It is an experimental graph, not a benchmarked or production-ready recipe. A [synthetic mannequin demo](../../examples/README.md) includes inputs, a mask and the unretouched Qwen output.
 
 ## Dependencies
 
@@ -25,6 +25,6 @@ The final composite keeps the source dimensions. Pixels where the mask equals ze
 
 ## Validation status
 
-The public JSON passed structural and typed-link checks on 2026-09-26. Earlier local setup checks recognized the baseline's model files and graph inputs, reporting only the two missing input images. This is not a successful inference test. The sanitized public graph still needs an end-to-end run with cleared demo inputs, environment/model revision capture, quality review, peak VRAM/RAM and timings before it can be described as tested.
+The public JSON passed structural and typed-link checks on 2026-09-26. Earlier local setup checks recognized the baseline's model files and graph inputs, reporting only the two missing input images. On 2026-09-26 the corresponding API graph completed one synthetic mannequin test on RTX 3060 12 GB. Only input names, the instruction and save prefix changed. The run took about 11m 40s including loading; all zero-mask pixels were preserved. Small edge artifacts remain. See [the measured report](../../docs/validation.md) for exact settings, hashes, sampled memory and limitations. Interactive UI import and broader quality are not covered by this single API run.
 
 Use this for ordinary fashion and e-commerce work with permission. Keep private assets and commercial workflows outside this repository.
