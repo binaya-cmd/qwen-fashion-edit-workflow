@@ -16,4 +16,4 @@ Upstream references: [Qwen model card](https://huggingface.co/Qwen/Qwen-Image-Ed
 
 Review each source's license, exact filename, size and revision before downloading. Record revision and SHA-256, comparing against a trusted upstream checksum where available. A local hash alone does not establish provenance. Restart or refresh ComfyUI and select the exact model filenames.
 
-The original local setup recognized these files; inference memory, quality and speed remain untested for the sanitized public graph. External models and software retain their own licenses.
+These local files were used in one completed synthetic mannequin test. See [validation](validation.md) for their SHA-256 hashes, measured memory/time and visual limitations. External models and software retain their own licenses.

@@ -2,17 +2,17 @@
 
 ## Understand the setup paths
 
-The table describes options to evaluate, not measured performance or purchasing recommendations. Only the experimental budget JSON is supplied. No hardware configuration has a completed public benchmark yet.
+The table describes options to evaluate, not measured performance or purchasing recommendations. Only the experimental budget JSON is supplied. One cold synthetic mannequin run on RTX 3060 12 GB is documented in [validation](validation.md); no repeated or comparative benchmark is available.
 
 | Path | What it means here | Why evaluate it | Main tradeoff | Evidence today |
 | --- | --- | --- | --- | --- |
-| RTX 3060 12 GB, local | Q4_K_M GGUF model, 0.5 MP working image, one image and low-VRAM launch | Experiment on an existing desktop | Limited VRAM; offloading can consume system RAM and time | Graph structure checked; end-to-end run pending |
+| RTX 3060 12 GB, local | Q4_K_M GGUF model, 0.5 MP working image, one image and low-VRAM launch | Experiment on an existing desktop | Limited VRAM; offloading can consume system RAM and time | One synthetic run completed in about 11m 40s including loading; visible edge limitations |
 | RTX A6000 / A40 48 GB | Test the same inputs on a machine with more VRAM | Investigate capacity limits or different precision/resolution | Purchase or rental cost; complete graph still needs memory measurement | No comparison benchmark |
 | Larger-memory / heavier-model configuration | Separately select compatible model, precision and runtime | Investigate a specific unmet quality or capacity need | More resource use and setup complexity | Research only; no additional graph supplied |
 
 VRAM is GPU memory; system RAM is separate. A GPU model name alone does not establish compatibility: the RTX 3060 has different memory variants. Check your actual card. Hardware references: [RTX 3060 specifications](https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/rtx-3060-3060ti/), [RTX A6000](https://www.nvidia.com/en-gb/products/workstations/quadro/rtx-a6000/), [NVIDIA A40 reference](https://docs.nvidia.com/vgpu/sizing/virtual-workstation/latest/gpus-vws.html).
 
-The earlier local setup used 32 GB system RAM. That is context, not a validated minimum. Offloading, image dimensions, other applications and model loading affect RAM usage. Check model download sizes and reserve space for all components, temporary downloads and outputs. There is no measured disk-space requirement for a complete clean installation yet.
+The measured local setup used 32 GB system RAM; sampled whole-system use reached 30.75 GiB with other applications open. That is context, not a validated minimum. Offloading, image dimensions, other applications and model loading affect RAM usage. Check model download sizes and reserve space for all components, temporary downloads and outputs. There is no measured disk-space requirement for a complete clean installation yet.
 
 ## Why use quantization?
 

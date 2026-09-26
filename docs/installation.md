@@ -1,6 +1,6 @@
 # Installation
 
-This repository includes an experimental workflow JSON, not an installer. End-to-end generation remains untested for the public graph.
+This repository includes an experimental workflow JSON, not an installer. One synthetic mannequin API run completed on RTX 3060 12 GB; see [validation](validation.md) for tested conditions and remaining limits.
 
 1. Install ComfyUI using the [official Windows portable guide](https://docs.comfy.org/installation/comfyui_portable_windows) or [manual installation guide](https://docs.comfy.org/installation/manual_install). Keep the installation outside this repository.
 2. Check that ComfyUI detects your GPU. The budget target is an RTX 3060 **12 GB**, not the 8 GB variant; memory fit is not guaranteed.
