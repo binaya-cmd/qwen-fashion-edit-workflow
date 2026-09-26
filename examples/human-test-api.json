@@ -1,0 +1,231 @@
+{
+  "1": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "human-source-masked.png"
+    }
+  },
+  "2": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "human-reference.png"
+    }
+  },
+  "3": {
+    "class_type": "ImageScaleToTotalPixels",
+    "inputs": {
+      "upscale_method": "lanczos",
+      "megapixels": 0.5,
+      "resolution_steps": 32,
+      "image": [
+        "1",
+        0
+      ]
+    }
+  },
+  "4": {
+    "class_type": "UnetLoaderGGUF",
+    "inputs": {
+      "unet_name": "qwen-image-edit-2511-Q4_K_M.gguf"
+    }
+  },
+  "5": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "type": "qwen_image",
+      "device": "default"
+    }
+  },
+  "6": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "qwen_image_vae.safetensors"
+    }
+  },
+  "7": {
+    "class_type": "ModelSamplingAuraFlow",
+    "inputs": {
+      "shift": 3.1,
+      "model": [
+        "4",
+        0
+      ]
+    }
+  },
+  "8": {
+    "class_type": "CFGNorm",
+    "inputs": {
+      "strength": 1.0,
+      "pre_cfg": false,
+      "model": [
+        "7",
+        0
+      ]
+    }
+  },
+  "9": {
+    "class_type": "TextEncodeQwenImageEditPlus",
+    "inputs": {
+      "prompt": "Replace the plain beige dress worn by the adult woman in picture 1 with the elegant midnight-blue party dress shown in picture 2. Reproduce the satin fabric, fitted bodice, short sleeves, round neckline, matching narrow waistband, flared knee-length skirt, silver botanical embroidery and delicate sparkling hem embellishments. Keep her face, hairstyle, body proportions, pose, arms, hands, legs, shoes, lighting and studio background unchanged. Photorealistic fashion catalogue photograph with realistic garment folds.",
+      "clip": [
+        "5",
+        0
+      ],
+      "vae": [
+        "6",
+        0
+      ],
+      "image1": [
+        "3",
+        0
+      ],
+      "image2": [
+        "2",
+        0
+      ]
+    }
+  },
+  "10": {
+    "class_type": "TextEncodeQwenImageEditPlus",
+    "inputs": {
+      "prompt": "",
+      "clip": [
+        "5",
+        0
+      ],
+      "vae": [
+        "6",
+        0
+      ],
+      "image1": [
+        "3",
+        0
+      ],
+      "image2": [
+        "2",
+        0
+      ]
+    }
+  },
+  "11": {
+    "class_type": "FluxKontextMultiReferenceLatentMethod",
+    "inputs": {
+      "reference_latents_method": "index_timestep_zero",
+      "conditioning": [
+        "9",
+        0
+      ]
+    }
+  },
+  "12": {
+    "class_type": "FluxKontextMultiReferenceLatentMethod",
+    "inputs": {
+      "reference_latents_method": "index_timestep_zero",
+      "conditioning": [
+        "10",
+        0
+      ]
+    }
+  },
+  "13": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "3",
+        0
+      ],
+      "vae": [
+        "6",
+        0
+      ]
+    }
+  },
+  "14": {
+    "class_type": "SetLatentNoiseMask",
+    "inputs": {
+      "samples": [
+        "13",
+        0
+      ],
+      "mask": [
+        "1",
+        1
+      ]
+    }
+  },
+  "15": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": 20260915,
+      "steps": 20,
+      "cfg": 4.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1.0,
+      "model": [
+        "8",
+        0
+      ],
+      "positive": [
+        "11",
+        0
+      ],
+      "negative": [
+        "12",
+        0
+      ],
+      "latent_image": [
+        "14",
+        0
+      ]
+    }
+  },
+  "16": {
+    "class_type": "VAEDecodeTiled",
+    "inputs": {
+      "tile_size": 512,
+      "overlap": 64,
+      "temporal_size": 64,
+      "temporal_overlap": 8,
+      "samples": [
+        "15",
+        0
+      ],
+      "vae": [
+        "6",
+        0
+      ]
+    }
+  },
+  "17": {
+    "class_type": "ImageCompositeMasked",
+    "inputs": {
+      "x": 0,
+      "y": 0,
+      "resize_source": true,
+      "destination": [
+        "1",
+        0
+      ],
+      "source": [
+        "16",
+        0
+      ],
+      "mask": [
+        "1",
+        1
+      ]
+    }
+  },
+  "18": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "Qwen_Human_Party_Test",
+      "images": [
+        "17",
+        0
+      ]
+    }
+  }
+}
