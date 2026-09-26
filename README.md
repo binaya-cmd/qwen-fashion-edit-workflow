@@ -13,27 +13,25 @@
 
 **Your photo. Your garment reference. A carefully chosen edit area.**
 
-[**Download starter workflow ↓**](https://github.com/binaya-cmd/qwen-fashion-edit-workflow/raw/refs/heads/main/workflows/low-budget/Qwen_Fashion_Edit_3060.json) · [**Quality experiment**](docs/quality-validation.md) · [**Full overview**](docs/project-overview.md) · [**Hardware & costs**](docs/hardware-guide.md) · [**Troubleshooting**](docs/troubleshooting.md)
+[**Download workflow · 1 MP / 40 steps ↓**](https://github.com/binaya-cmd/qwen-fashion-edit-workflow/raw/refs/heads/main/workflows/low-budget/Qwen_Fashion_Edit_3060.json) · [**Quality experiment**](docs/quality-validation.md) · [**Full overview**](docs/project-overview.md) · [**Hardware & costs**](docs/hardware-guide.md) · [**Troubleshooting**](docs/troubleshooting.md)
 
 </div>
 
 | 🖼️ **YOUR IMAGES** | 🎨 **YOUR EDIT AREA** | 🧠 **LOCAL GENERATION** | 👗 **REVIEW THE RESULT** |
 | :---: | :---: | :---: | :---: |
-| Source photo + garment reference | Paint a focused clothing mask | Run the Qwen graph in ComfyUI | Inspect garment details and edges |
+| Source + garment and detail reference | Paint generation and blend masks | Run the Qwen graph in ComfyUI | Inspect garment details and edges |
 
-## 🧪 Reference dress → higher-detail Qwen result
+## 🧪 Simple dress → party-dress concept
 
-| Before: fictional adult | Target party dress | After: two-pass Qwen result |
+| Before: fictional adult | Target party dress | Retouched illustrative preview |
 | :---: | :---: | :---: |
-| ![Fictional adult wearing a simple beige dress](examples/quality-full-source.png) | ![Target blue satin dress with silver botanical embroidery](examples/quality-reference.png) | ![Higher-detail Qwen result with bodice and hem embroidery](examples/quality-result.png) |
+| ![Fictional adult wearing a simple beige dress](examples/quality-full-source.png) | ![Target blue satin dress with silver botanical embroidery](examples/quality-reference.png) | ![Retouched illustrative party-dress preview, not raw Qwen output](examples/party-dress-retouched-preview.png) |
 
-**Higher-detail experiment:** garment crop, a third embroidery reference, 1 MP / 40 steps, separate masks, then a focused edge-repair pass. This is **not the unchanged starter workflow**. The target reference controls the dress design and intended length. The source and target were generated from scratch; no client photographs were used.
+> **Illustrative, retouched preview:** the final panel was cleaned up with a separate image-editing tool. It is **not an unretouched output of the downloadable workflow or a quality guarantee**. Accurate edits require carefully prepared generation and blending masks and targeted inpainting, especially around hands, hems and changed garment lengths. Exact garment reproduction is not guaranteed. All people and garments shown are synthetic; no client images were used.
 
-Bodice/sleeve embroidery and the botanical hem are substantially closer to the reference than the first test. Motif placement and construction still differ, and a boundary irregularity remains beside the left hand despite the repair. This is not patch-free or an exact product replica. The result includes two Qwen passes plus crop compositing, with the original face and other zero-mask pixels preserved.
+The main workflow download now includes **1 MP / 40 steps, a garment-detail reference and separate generation/blend masks**. The target reference guides dress design and length. Cropping and any additional repair passes remain manual.
 
-[**Quality configuration, API graphs and measurements**](docs/quality-validation.md) · [Earlier 20-step human test](examples/HUMAN-PARTY.md) · [Mannequin test](examples/README.md)
-
-The main detail pass took **34m 27s** and the focused repair **9m 29s**, including loading in separate server processes on RTX 3060 12 GB. See the report for memory limits and reproduction steps.
+[**Actual Qwen outputs, settings and measured limitations**](docs/quality-validation.md) · [Earlier 20-step human test](examples/HUMAN-PARTY.md) · [Mannequin test](examples/README.md) · [Image provenance](ASSET-MANIFEST.md)
 
 ## ✨ See the concept
 
@@ -47,11 +45,11 @@ The main detail pass took **34m 27s** and the focused repair **9m 29s**, includi
 
 A local Qwen workflow for experimenting with everyday garment edits using a source photo, product reference and painted clothing mask.
 
-**You provide two images and choose the clothing area. The workflow generates an edited garment region, then combines it with your original photograph.** It is intended for creators learning ComfyUI, fashion concept exploration, and e-commerce teams evaluating AI-assisted editing.
+**You provide a source photo, a garment reference and its detail crop, then prepare two masks. The workflow generates an edited garment region, then combines it with your original photograph.** It is intended for creators learning ComfyUI, fashion concept exploration, and e-commerce teams evaluating AI-assisted editing.
 
 For a detailed explanation, start with the **[public project overview](docs/project-overview.md)**. It covers the complete process, examples, limitations, privacy, and common questions. For equipment choices and operating costs, read the **[hardware and cost guide](docs/hardware-guide.md)**.
 
-**Status: experimental workflow starter.** The low-budget JSON is now included and structurally checked. Two separate synthetic examples completed on an RTX 3060 12 GB: a mannequin color edit and a fictional adult changing from a plain dress to a party dress. These demonstrate pipeline execution, with documented visual limitations. It is not a general quality or speed benchmark. [Measured report](docs/validation.md). This project is independent of Qwen and ComfyUI.
+**Status: experimental.** The revised main canvas has been structurally and schema checked; no new inference was run for this export. Earlier synthetic runs and the separate quality experiment document actual Qwen results and limitations. The retouched preview is illustrative. [Validation details](docs/quality-validation.md). This project is independent of Qwen and ComfyUI.
 
 ## ✓ What you need before starting
 
@@ -62,7 +60,7 @@ For a detailed explanation, start with the **[public project overview](docs/proj
 | **Disk space** | Enough for all three model files, the ComfyUI environment, temporary downloads and outputs. Check actual download sizes before starting. |
 | **GGUF extension** | `city96/ComfyUI-GGUF`, installed into the same ComfyUI environment |
 | **Three model files** | The GGUF diffusion model, text/image encoder and VAE listed below |
-| **Your inputs** | One source photograph, one everyday garment reference, and a mask you paint in ComfyUI |
+| **Your inputs** | Source photo, target garment, detail crop of the same garment, and separate generation/blend masks |
 | **Initial internet access** | Needed to obtain software and models. The supplied generation graph uses local model nodes. |
 
 **New to the terms?** ComfyUI is the visual application that runs the workflow. A *node* performs one step. The *model* generates the edit, the *encoder* interprets the prompt and images, and the *VAE* converts between pixels and the model's internal image representation. A *mask* marks where the edit may appear. A *GGUF* file is a quantized model file that needs the matching loader.
@@ -110,16 +108,17 @@ Download **[Qwen_Fashion_Edit_3060.json](https://github.com/binaya-cmd/qwen-fash
 
 Missing `UnetLoaderGGUF` usually means the extension did not load. Missing `TextEncodeQwenImageEditPlus`, `CFGNorm` or `FluxKontextMultiReferenceLatentMethod` requires checking your ComfyUI version and startup errors. The [upstream tutorial](https://docs.comfy.org/tutorials/image/qwen/qwen-image-edit-2511) describes the Qwen core-node setup.
 
-### 5 · Supply your images and paint the mask
+### 5 · Supply the images and both masks
 
-1. **Node 1:** upload your source photo.
-2. **Node 2:** upload your garment product reference.
-3. Right-click the source image, open **MaskEditor**, paint the clothing region that should change, and save the mask. Leave the face, hair and other details you want preserved outside it.
-4. **Node 9:** review the general fashion instruction and adjust it for your garment.
-5. Start with the supplied **0.5 MP, 20 steps, CFG 4, Euler/simple and one image**. Use a modest-size reference too.
-6. Press **Run** and inspect the result. Outputs are saved in ComfyUI's output folder with the `Qwen_Fashion_Edit` prefix.
+1. **Node 1:** load your source photo and use **MaskEditor** to paint the generation mask. Cover both the old outfit and intended target silhouette; protect the face and hands where possible.
+2. **Node 2:** load the full target garment reference. Its design and length guide the output.
+3. **Node 20:** load a close-up of details from that same reference. If no detail crop is available, load the full reference again.
+4. **Node 21:** load the **same source photo/crop, with exactly the same dimensions and alignment**, and paint a separate blend mask in MaskEditor. This controls which generated pixels appear in the final image. Include areas needed to remove the old garment; carefully refine boundaries near hands and hems.
+5. Save both masks. These nodes use **alpha masks**: an ordinary RGB black-and-white mask PNG does not work as the LoadImage MASK output. Use MaskEditor or a correctly prepared alpha-bearing source image.
+6. Review the instruction in **node 9**. Defaults are **1 MP, 40 steps, CFG 4, Euler/simple, denoise 1**, one image. Select the installed model files and press **Run**.
+7. Inspect the output saved under `Qwen_Fashion_Edit`. Refine masks and use targeted inpainting if edges or garment details need correction. Exact reproduction is not guaranteed.
 
-An empty mask returns an unchanged source in the final composite. If the new garment extends beyond the old outline, the mask must cover that intended area. See the [complete workflow guide](workflows/low-budget/README.md) for settings and limitations.
+For small garment details, manually prepare a tight source crop before loading it into nodes 1 and 21. This graph saves at the supplied source dimensions; it does not automatically crop, stitch into a full photograph, or run a second repair pass. An empty blend mask returns the unchanged source. Proper masks and inpainting improve results but cannot guarantee a perfect match.
 
 <details>
 <summary><strong>Windows portable: optional low-memory launch command</strong></summary>
@@ -139,7 +138,7 @@ Open the local address printed in the console. Do not start another instance on 
 1. Read the [hardware guide](docs/hardware-guide.md).
 2. Follow [installation](docs/installation.md) and obtain the exact files in [model downloads](docs/model-downloads.md).
 3. Download [Qwen_Fashion_Edit_3060.json](workflows/low-budget/Qwen_Fashion_Edit_3060.json) using **Download raw file** and drag it into ComfyUI.
-4. Follow the [workflow instructions](workflows/low-budget/README.md) to supply two images and paint a mask.
+4. Follow the [workflow instructions](workflows/low-budget/README.md) to supply the reference/detail images and paint both masks.
 5. Review the output and consult [troubleshooting](docs/troubleshooting.md).
 
 ### What you receive
@@ -147,7 +146,7 @@ Open the local address printed in the console. Do not start another instance on 
 | Included | You supply separately |
 | --- | --- |
 | ComfyUI workflow JSON: a saved arrangement of nodes and settings | A working ComfyUI installation and compatible GPU/runtime |
-| Generic fashion-edit instruction and manual mask process | Your own source photo, garment reference and painted mask |
+| Generic fashion-edit instruction and manual mask process | Your own source photo, garment reference/detail and two painted masks |
 | Model filenames, source links and installation guidance | Model downloads and the GGUF extension |
 | Hardware planning and troubleshooting guidance | Local electricity/hardware or any cloud rental costs |
 
@@ -155,18 +154,18 @@ This is a workflow you load into ComfyUI, not a hosted image editor or a standal
 
 ### Example use
 
-Suppose you have permission to edit a photograph of a person wearing a plain shirt and you have a product photograph of a blue everyday shirt. Load those two images, paint the shirt region, and ask the workflow to match the reference garment. Review the generated result against the actual product. This describes the intended process; it is not a published test result.
+Suppose you have permission to edit a photograph of a person wearing a plain shirt and you have a product photograph of a blue everyday shirt. Load the source, full reference and detail reference, paint the generation and blend masks, and ask the workflow to match the reference garment. Review the generated result against the actual product. This describes the intended process; it is not a published test result.
 
 ## ◇ How the edit works
 
 ```mermaid
 flowchart LR
     A[Your source photo] --> Q[Qwen edit at working resolution]
-    B[Garment reference] --> Q
+    B[Garment reference and detail crop] --> Q
     C[Painted mask and instruction] --> Q
     Q --> D[Composite with original photo]
     A --> D
-    C --> D
+    F[Separate blend mask] --> D
     D --> E[Save and review]
 ```
 
@@ -182,7 +181,7 @@ The graph edits a painted garment region and composites it over the original sou
 
 ## ♧ Privacy and public scope
 
-General fashion and e-commerce examples only. The public baseline uses generic prompts and placeholder input filenames. Client images, model weights, credentials, confidential prompts and proprietary paid workflows remain outside the repository and its history. The front-page illustration was created separately to explain the concept; separate synthetic mannequin and fictional-adult input/reference/output demos are included with measured test notes. Model downloads and installation are manual.
+General fashion and e-commerce examples only. The public baseline uses generic prompts and placeholder input filenames. Client images, model weights, credentials, confidential prompts and proprietary paid workflows remain outside the repository and its history. The front-page illustrations were created or retouched separately to explain the concept; separate synthetic mannequin and fictional-adult input/reference/output demos are included with measured test notes. Model downloads and installation are manual.
 
 The [pro folder](workflows/pro-placeholder/README.md) remains a documentation placeholder. External models and software retain their own licenses; original repository material is provided under the [MIT License](LICENSE).
 

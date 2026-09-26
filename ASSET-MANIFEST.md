@@ -50,3 +50,11 @@ Critical: depict a fictional person created from scratch, no real person likenes
 ## Higher-detail crop and edge-repair experiment
 
 The `examples/quality-*.png` assets reuse the original synthetic fictional-adult source and target garment described in HUMAN-PARTY.md. Inputs include technical crops and masks; they introduce no client assets or new depicted person. `quality-before-repair.png` records the first local Qwen pass, and `quality-result.png` records that pass followed by one focused Qwen edge repair and spatial crop assembly. The final image is not described as a single-pass output or an exact garment replica. No texture was manually painted over the Qwen output. Metadata embedding was disabled. Full prompts are in the published API graphs; [configuration, measurements and limits](docs/quality-validation.md) describe the process.
+
+
+## Retouched party-dress preview
+
+- File: `examples/party-dress-retouched-preview.png`.
+- Created with the built-in imagegen image-editing tool from the existing synthetic two-pass Qwen result. No client photograph or private asset was used.
+- Purpose: illustrative cleanup of dress/hand boundary artifacts. Not raw Qwen output, a benchmark, or proof of exact garment reproduction. Original results remain in `examples/quality-result.png` and the quality report.
+- Prompt: “Edit this supplied synthetic fashion image to create a clean retouched illustrative preview for a GitHub README. Correct only the clothing boundary artifacts: remove the pale/beige/white notch and remnants around the woman's left hand (viewer left), continue the midnight-blue satin dress smoothly behind the hand with a natural uninterrupted flared side silhouette, and clean the thin pale garment-edge remnants beside the other arm. Preserve the woman's face, identity, skin, fingers and anatomy, pose, hairstyle, shoes, studio background, framing, existing knee-length dress, silver botanical embroidery, waistband and lighting as closely as possible. Do not redesign the dress, change its length or add new accessories. Natural believable hands in front of the dress with clean occlusion. This is a retouched illustration, not a raw Qwen benchmark output. No text, watermark or collage in the image.”
