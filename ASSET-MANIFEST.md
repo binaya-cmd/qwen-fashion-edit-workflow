@@ -1,4 +1,16 @@
-# Public visual asset
+# Public visual assets
+
+## Actual Qwen result
+
+`examples/result.png` is the unretouched saved output of the local Qwen test on 2026-09-26, using only the synthetic inputs described below. It is not a separately generated concept image. ComfyUI workflow metadata embedding was disabled for the run. See [test instruction](examples/README.md) and [measured report](docs/validation.md).
+
+## Synthetic validation inputs
+
+The built-in OpenAI image-generation tool created two original images on 2026-09-26, without reference images, for the owner's requested local Qwen test. The test uses a headless mannequin and standalone garment, not a person or any private client asset. Copies were resized to 768 × 768 for the test. A deterministic polygon mask and alpha-bearing source were prepared locally; these are test data, not generated Qwen results.
+
+Source generation prompt: Create a single photorealistic fashion studio test input, portrait 1024x1024. A headless neutral ivory dressmaker mannequin on a slim metal stand, wearing a plain beige knee-length short-sleeved dress, front view, centered, entire dress visible with generous background margin. The mannequin has no arms or legs, only torso and short neck. Warm light gray seamless studio background, even soft lighting. No person, no text, no logos, no collage. Original synthetic asset intended as input for a real local garment-edit workflow test. Dress silhouette simple, fabric smooth, no accessories.
+
+Reference generation prompt: Generate one original synthetic product photograph for a garment reference in an AI editing test. Single plain forest-green short-sleeved knee-length A-line dress with round neckline, subtle fitted waist seam, smooth cotton fabric, no belt, no pockets, no patterns, no logos. Front view, flat lay neatly arranged symmetrically on a light ivory background, entire garment visible, centered with generous margins. Square composition, soft even studio lighting. No person, mannequin, hanger, text, collage or before-after comparison. One image only.
 
 ## fashion-tech-banner.png
 
