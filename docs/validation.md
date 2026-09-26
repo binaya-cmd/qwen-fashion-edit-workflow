@@ -1,5 +1,8 @@
 # Validation: one synthetic mannequin run
 
+> Historical 0.5 MP / 20-step baseline report. The current main canvas has been revised to 1 MP / 40 steps, reference detail and separate masks; the settings and hashes below describe the recorded earlier test.
+
+
 On 2026-09-26, one local run completed successfully and saved a 768 × 768 output. The beige dress became green. This establishes execution for these inputs, not production readiness or a general hardware benchmark.
 
 A separate [fictional-adult party-dress test](human-validation.md) is also available. Measurements below refer only to this mannequin run.

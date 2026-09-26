@@ -6,7 +6,7 @@ The table describes options to evaluate, not measured performance or purchasing 
 
 | Path | What it means here | Why evaluate it | Main tradeoff | Evidence today |
 | --- | --- | --- | --- | --- |
-| RTX 3060 12 GB, local | Q4_K_M GGUF model, 0.5 MP working image, one image and low-VRAM launch | Experiment on an existing desktop | Limited VRAM; offloading can consume system RAM and time | One synthetic run completed in about 11m 40s including loading; visible edge limitations |
+| RTX 3060 12 GB, local | Q4_K_M GGUF model, historical 0.5 MP working image, one image and low-VRAM launch | Experiment on an existing desktop | Limited VRAM; offloading can consume system RAM and time | One synthetic run completed in about 11m 40s including loading; visible edge limitations |
 | RTX A6000 / A40 48 GB | Test the same inputs on a machine with more VRAM | Investigate capacity limits or different precision/resolution | Purchase or rental cost; complete graph still needs memory measurement | No comparison benchmark |
 | Larger-memory / heavier-model configuration | Separately select compatible model, precision and runtime | Investigate a specific unmet quality or capacity need | More resource use and setup complexity | Research only; no additional graph supplied |
 
@@ -18,7 +18,7 @@ The measured local setup used 32 GB system RAM; sampled whole-system use reached
 
 The supplied graph uses `qwen-image-edit-2511-Q4_K_M.gguf` with `UnetLoaderGGUF`. Quantization reduces weight precision. It can reduce storage and model memory requirements, but quality and speed must be measured with the complete workflow. Encoder, VAE, activations and images also consume resources; model file size is not the same as peak VRAM.
 
-The upstream BF16 model uses a different loader path and is not a drop-in filename change. Do not mix model families or add an acceleration LoRA without using its matching settings. The public graph currently uses 20 steps and no LoRA.
+The upstream BF16 model uses a different loader path and is not a drop-in filename change. Do not mix model families or add an acceleration LoRA without using its matching settings. The public graph currently uses 40 steps and no LoRA.
 
 ## Local versus cloud
 
@@ -48,3 +48,5 @@ Include failed attempts and rejected images when evaluating practical cost. A lo
 Use the same cleared source image, reference image, mask, prompt, model, working dimensions, seed and sampler settings. If changing model precision, report that as a different configuration rather than attributing every difference to the GPU.
 
 Measure cold model loading separately from warm generation. Record several runs, the median, peak VRAM and system RAM, failures and accepted output count. More VRAM alone establishes neither better image fidelity nor a specific speedup. Use the [validation template](validation.md) before publishing comparison claims.
+
+The current main download uses 1 MP / 40 steps and a detail reference, so the historical 20-step timing above is not its runtime estimate. See the [quality experiment](quality-validation.md) for a measured, more demanding crop test.

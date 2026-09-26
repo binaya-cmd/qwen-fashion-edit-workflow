@@ -1,5 +1,8 @@
 # Human example: simple dress to party dress
 
+> Historical 0.5 MP / 20-step baseline report. The current main canvas has been revised to 1 MP / 40 steps, reference detail and separate masks; the settings and hashes below describe the recorded earlier test.
+
+
 One actual local Qwen run completed on 2026-09-26 using a newly generated fictional adult and a separately generated party-dress reference. No client photographs, private model images or real-person references were used.
 
 [View before / reference / actual result](../examples/HUMAN-PARTY.md). The saved output is unretouched. The earlier [mannequin report](validation.md) is a separate test.

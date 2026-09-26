@@ -1,6 +1,8 @@
 # Higher-detail dress transfer: crop, reference detail and edge repair
 
-This experiment addresses the earlier human example's missing embroidery and rough boundary. It uses a different, more demanding configuration than the public 0.5 MP / 20-step starter. It is not a claim that the starter produces this result unchanged.
+This recorded experiment addresses the earlier human example's missing embroidery and rough boundary. The main canvas now adopts 1 MP / 40 steps, a detail-reference input and separate masks. It does not automate this experiment's crop assembly or second repair pass. The revised export passed structural/schema checks; no new inference was run for that export.
+
+The front-page preview is separately retouched with an image-editing tool. The images below remain the actual Qwen experiment results, including visible limitations.
 
 | Original synthetic source | Target garment | Final two-pass Qwen result |
 | :---: | :---: | :---: |
