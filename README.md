@@ -13,7 +13,7 @@
 
 **Your photo. Your garment reference. A carefully chosen edit area.**
 
-[**Download workflow ↓**](https://github.com/binaya-cmd/qwen-fashion-edit-workflow/raw/refs/heads/main/workflows/low-budget/Qwen_Fashion_Edit_3060.json) · [**Full overview**](docs/project-overview.md) · [**Hardware & costs**](docs/hardware-guide.md) · [**Troubleshooting**](docs/troubleshooting.md)
+[**Download starter workflow ↓**](https://github.com/binaya-cmd/qwen-fashion-edit-workflow/raw/refs/heads/main/workflows/low-budget/Qwen_Fashion_Edit_3060.json) · [**Quality experiment**](docs/quality-validation.md) · [**Full overview**](docs/project-overview.md) · [**Hardware & costs**](docs/hardware-guide.md) · [**Troubleshooting**](docs/troubleshooting.md)
 
 </div>
 
@@ -21,15 +21,19 @@
 | :---: | :---: | :---: | :---: |
 | Source photo + garment reference | Paint a focused clothing mask | Run the Qwen graph in ComfyUI | Inspect garment details and edges |
 
-## 🧪 Simple dress → party dress: actual Qwen example
+## 🧪 Reference dress → higher-detail Qwen result
 
-| Before: fictional adult | Party-dress reference | After: actual Qwen output |
+| Before: fictional adult | Target party dress | After: two-pass Qwen result |
 | :---: | :---: | :---: |
-| ![Fictional adult in a plain beige dress](examples/human-source.png) | ![Midnight-blue satin party dress with silver embroidery](examples/human-reference.png) | ![Actual Qwen edit of the fictional adult in a party dress](examples/human-result.png) |
+| ![Fictional adult wearing a simple beige dress](examples/quality-full-source.png) | ![Target blue satin dress with silver botanical embroidery](examples/quality-reference.png) | ![Higher-detail Qwen result with bodice and hem embroidery](examples/quality-result.png) |
 
-**Actual local Qwen run · RTX 3060 12 GB · 20 steps · 10m 41s including model loading.** The adult and reference were generated from scratch; no client photographs were used. The after image is the unretouched workflow output. All zero-mask pixels were preserved exactly. The bodice embroidery is largely missing, the hem pattern is simplified, and thin beige edge remnants remain. This is an experimental demonstration, not an exact product replica.
+**Higher-detail experiment:** garment crop, a third embroidery reference, 1 MP / 40 steps, separate masks, then a focused edge-repair pass. This is **not the unchanged starter workflow**. The target reference controls the dress design and intended length. The source and target were generated from scratch; no client photographs were used.
 
-[**Inputs, mask and prompt**](examples/HUMAN-PARTY.md) · [**Measured human-example report**](docs/human-validation.md) · [Earlier mannequin test](examples/README.md)
+Bodice/sleeve embroidery and the botanical hem are substantially closer to the reference than the first test. Motif placement and construction still differ, and a boundary irregularity remains beside the left hand despite the repair. This is not patch-free or an exact product replica. The result includes two Qwen passes plus crop compositing, with the original face and other zero-mask pixels preserved.
+
+[**Quality configuration, API graphs and measurements**](docs/quality-validation.md) · [Earlier 20-step human test](examples/HUMAN-PARTY.md) · [Mannequin test](examples/README.md)
+
+The main detail pass took **34m 27s** and the focused repair **9m 29s**, including loading in separate server processes on RTX 3060 12 GB. See the report for memory limits and reproduction steps.
 
 ## ✨ See the concept
 

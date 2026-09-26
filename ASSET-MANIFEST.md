@@ -45,3 +45,8 @@ Critical: depict a fictional person created from scratch, no real person likenes
 `examples/human-source.png` and `examples/human-reference.png` were created from scratch with the built-in OpenAI image-generation tool on 2026-09-26. No input photographs or real-person references were supplied. The pictured adult is fictional. Images were resized to 768 × 768 for testing; a hand-defined polygon supplies `human-mask.png` and the inverse-alpha `human-source-masked.png`.
 
 `examples/human-result.png` is the unretouched output of the actual local Qwen run, not an image-generation-tool mockup. No client inputs/outputs were involved, and ComfyUI metadata embedding was disabled. The owner explicitly requested running and publishing this example to GitHub. Full generation prompts and the exact Qwen instruction are linked in [HUMAN-PARTY.md](examples/HUMAN-PARTY.md); [measured results](docs/human-validation.md) describe limitations.
+
+
+## Higher-detail crop and edge-repair experiment
+
+The `examples/quality-*.png` assets reuse the original synthetic fictional-adult source and target garment described in HUMAN-PARTY.md. Inputs include technical crops and masks; they introduce no client assets or new depicted person. `quality-before-repair.png` records the first local Qwen pass, and `quality-result.png` records that pass followed by one focused Qwen edge repair and spatial crop assembly. The final image is not described as a single-pass output or an exact garment replica. No texture was manually painted over the Qwen output. Metadata embedding was disabled. Full prompts are in the published API graphs; [configuration, measurements and limits](docs/quality-validation.md) describe the process.
